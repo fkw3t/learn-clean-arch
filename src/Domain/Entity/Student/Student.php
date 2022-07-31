@@ -8,6 +8,7 @@ use App\Domain\Entity\Phone;
 
 class Student
 {
+    private int $id;
     private string $name;
     private CPF $cpf;
     private Email $email;
