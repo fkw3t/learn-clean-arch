@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Domain\Entity;
 
 use Exception;
 
@@ -10,7 +10,7 @@ class Email
 
     public function __construct(string $address)
     {
-        $this->address = $this->setEmail($address);
+        $this->setEmail($address);
     }
 
     public function setEmail(string $address): void
@@ -19,7 +19,7 @@ class Email
             $this->address = $address;
             return;
         }
-
+        
         throw new \InvalidArgumentException('Invalid e-mail address');
     }
 

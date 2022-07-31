@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Domain\Entity;
 
 
 class CPF
@@ -9,22 +9,21 @@ class CPF
 
     public function __construct(string $number)
     {
-        $this->number = $this->setNumber($number);
+        $this->setNumber($number);
     }
 
-    public function setNumber(string $number): void
+    private function setNumber(string $number): void
     {
-        $options = [
+        $opcoes = [
             'options' => [
                 'regexp' => '/\d{3}\.\d{3}\.\d{3}\-\d{2}/'
             ]
         ];
-
-        if(filter_var($number, FILTER_VALIDATE_REGEXP, $options)){
+        if (filter_var($number, FILTER_VALIDATE_REGEXP, $opcoes)) {
             $this->number = $number;
             return;
         }
-
+        
         throw new \InvalidArgumentException('Invalid document');
     }
 

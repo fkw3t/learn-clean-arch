@@ -1,1 +1,4 @@
 vendor/
+.vscode/
+.phpunit.result.cache
+phpunit.xml.bak
