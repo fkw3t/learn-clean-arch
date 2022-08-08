@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Entity;
+namespace App\Domain;
 
 
 class CPF
@@ -14,12 +14,7 @@ class CPF
 
     private function setNumber(string $number): void
     {
-        $opcoes = [
-            'options' => [
-                'regexp' => '/\d{3}\.\d{3}\.\d{3}\-\d{2}/'
-            ]
-        ];
-        if (filter_var($number, FILTER_VALIDATE_REGEXP, $opcoes)) {
+        if (strlen($number) == 11 && is_numeric($number)) {
             $this->number = $number;
             return;
         }
