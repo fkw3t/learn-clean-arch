@@ -4,6 +4,10 @@ namespace App\Infrastructure;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Column;
 
 require_once "vendor/autoload.php";
 
@@ -11,7 +15,8 @@ class EntityManagerFactory
 {
     public static function createEntityManager(): EntityManager
     {
-        $config = ORMSetup::createAnnotationMetadataConfiguration([__DIR__."/src"],
+        $rootDir = __DIR__ . '/../../';
+        $config = ORMSetup::createAnnotationMetadataConfiguration([$rootDir . "src"],
             true,
         );
         // or if you prefer YAML or XML
