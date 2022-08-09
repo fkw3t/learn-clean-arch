@@ -59,10 +59,26 @@ class Student
         );
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
     public function addPhone(Phone $phone): self
     {
         $this->phones->add($phone);
         $phone->addStudent($this);
         return $this;
+    }
+
+    public function getPhone(Phone $phone): Collection
+    {
+        return $this->phones;
     }
 }

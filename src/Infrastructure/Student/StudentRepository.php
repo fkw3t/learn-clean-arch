@@ -2,38 +2,57 @@
 
 namespace App\Infrastructure\Student;
 
-use App\Domain\Entity\Student\{Student, StudentRepositoryInterface}; 
-use App\Domain\Entity\CPF;
+use App\Domain\Student\{Student, StudentRepositoryInterface}; 
+use App\Domain\CPF;
+use App\Infrastructure\EntityManagerFactory;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+
+use function PHPUnit\Framework\throwException;
 
 class StudentRepository implements StudentRepositoryInterface
 {
+    private EntityManager $entityManager;
+    private EntityRepository $repository;
+
+    public function __construct()
+    {
+        $this->entityManager = EntityManagerFactory::createEntityManager();
+        $this->repository = $this->entityManager->getRepository(Student::class);
+    }
+
     public function getById(int $id): Student
     {
-        return (new Student());
+        $student = $this->entityManager->find(Student::class, $id);
+        return $student;
     }
 
     public function getByCPF(CPF $cpf): Student
     {
-        return (new Student());
+        $student = $this->repository->findOneBy(['cpf' => $cpf]); 
+        return $student;
     }
 
-    public function getAll(): Student
+    public function getAll(): array
     {
-        return (new Student());
+        $students = $this->repository->findAll();
+        return $students;
     }
 
-    public function insert(Student $aluno): bool
+    public function insert(Student $aluno): void
     {
-        return true;
+        $this->entityManager->persist($aluno);
+        $this->entityManager->flush();
     }
 
-    public function update(Student $aluno, array $data): bool
+    public function update(Student $student): void
     {
-        return true;
+        $this->entityManager->flush();
     }
 
-    public function delete(Student $student): bool
+    public function delete(Student $student): void
     {
-        return true;
+        $this->entityManager->remove($student);
     }
 }

@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Domain\Entity\Student;
+namespace App\Domain\Student;
 
-use App\Domain\Entity\CPF;
+use App\Domain\CPF;
+use Doctrine\Common\Collections\Collection;
 
 interface StudentRepositoryInterface
 {
-    public function insert(Student $student): bool;
+    public function insert(Student $student): void;
     public function getById(int $id): Student;
     public function getByCPF(CPF $cpf): Student;
-    public function getAll(): Student;
-    public function update(Student $student, array $data): bool;
-    public function delete(Student $student): bool;
+    public function getAll(): array;
+    public function update(Student $student): void;
+    public function delete(Student $student): void;
 }

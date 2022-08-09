@@ -17,7 +17,7 @@ class CPFTest extends TestCase
 
     public function testDocumentShouldBeAString(): void
     {
-        $cpf = new CPF('15196832602');
-        $this->assertSame('15196832602', (string) $cpf);
+        $cpf = new CPF('12312312312');
+        $this->assertSame('12312312312', (string) $cpf);
     }
 }
