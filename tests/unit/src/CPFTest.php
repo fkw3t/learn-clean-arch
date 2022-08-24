@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Src;
 
-use App\Domain\Entity\CPF;
+use App\Domain\ValueObjects\CPF;
 use PHPUnit\Framework\TestCase;
 
 class CPFTest extends TestCase
@@ -12,12 +12,12 @@ class CPFTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectDeprecationMessage('Invalid document');
         
-        new CPF('151968326022');
+        new CPF('123.123.123-12');
     }
 
     public function testDocumentShouldBeAString(): void
     {
-        $cpf = new CPF('151.968.326-02');
-        $this->assertSame('151.968.326-02', (string) $cpf);
+        $cpf = new CPF('12312312312');
+        $this->assertSame('12312312312', (string) $cpf);
     }
 }
