@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Column;
 
-require_once "vendor/autoload.php";
+// require_once '../../vendor/autoload.php';
 
 class EntityManagerFactory
 {

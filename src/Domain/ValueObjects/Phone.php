@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain;
+namespace App\Domain\ValueObjects;
 
-use App\Domain\Student\Student;
+use App\Domain\Entities\Student\Student;
 use Doctrine\ORM\Mapping\{Entity, Id, GeneratedValue, Column, ManyToOne};
 
 /**
@@ -18,7 +18,7 @@ class Phone
     private readonly int $id;
 
     /**
-     * @ManyToOne(targetEntity="App\Domain\Student\Student")
+     * @ManyToOne(targetEntity="App\Domain\Entities\Student\Student")
      */
     private Student $student;
 

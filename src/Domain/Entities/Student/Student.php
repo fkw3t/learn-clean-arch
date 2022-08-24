@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Domain\Student;
+namespace App\Domain\Entities\Student;
 
-use App\Domain\CPF;
-use App\Domain\Email;
-use App\Domain\Phone;
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTimeImmutable;
+use DateTimeInterface;
+use App\Domain\ValueObjects\CPF;
+use App\Domain\ValueObjects\Email;
+use App\Domain\ValueObjects\Phone;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\{Entity, Id, GeneratedValue, Column, OneToMany};
 
 /**
@@ -37,9 +39,20 @@ class Student
     private Email $email;
 
     /**
-     * @OneToMany(targetEntity="App\Domain\Phone", mappedBy="student", cascade={"remove", "persist"})
+     * @OneToMany(targetEntity="App\Domain\ValueObjects\Phone", mappedBy="student", cascade={"remove", "persist"})
      */
     private Collection $phones;
+
+    /**
+     * @Column(type="datetime_immutable")
+     */
+    private readonly DateTimeInterface $createdAt;
+
+
+    /**
+     * @Column(type="datetime_immutable", nullable=true))
+     */
+    private DateTimeInterface $updatedAt;
 
     
     public function __construct(CPF $cpf, string $name, Email $email)
@@ -48,6 +61,7 @@ class Student
         $this->name = $name;
         $this->email = $email;
         $this->phones = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
     }
     
     public static function withCPFNameEmail(string $cpf, string $name, string $email): self
@@ -80,5 +94,16 @@ class Student
     public function getPhone(Phone $phone): Collection
     {
         return $this->phones;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(): Student
+    {
+        $this->updatedAt = new DateTimeImmutable();
+        return $this;
     }
 }

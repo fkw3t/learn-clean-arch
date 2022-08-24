@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Src;
 
-use App\Domain\CPF;
+use App\Domain\ValueObjects\CPF;
 use PHPUnit\Framework\TestCase;
 
 class CPFTest extends TestCase
