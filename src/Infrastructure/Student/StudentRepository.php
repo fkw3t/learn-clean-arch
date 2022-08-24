@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Student;
 
-use App\Domain\Student\{Student, StudentRepositoryInterface}; 
-use App\Domain\CPF;
+use App\Domain\Entities\Student\{Student, StudentRepositoryInterface}; 
+use App\Domain\ValueObjects\CPF;
 use App\Infrastructure\EntityManagerFactory;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
